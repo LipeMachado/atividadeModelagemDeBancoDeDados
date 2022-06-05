@@ -1,4 +1,5 @@
 -- Criação de tabelas
+-- Com suas chaves, primária, estrangeira, única, não nula e checagem
 
 CREATE TABLE curso (
 	codigo_curso NUMBER,
@@ -106,3 +107,24 @@ CREATE TABLE monitoria (
 	CONSTRAINT monitoria_matricula_prof_fk FOREIGN KEY (matricula_professor) REFERENCES professor (matricula_professor)
 );
 
+-- ALTER TABLE - Adicionando uma coluna
+
+ALTER TABLE monitoria
+ADD (NUMERO_DE_MONITORES NUMBER(13))
+
+-- ALTER TABLE - Adicionar nova restrição
+
+ALTER TABLE monitoria ADD CHECK (maior_de_idade <> '');
+
+-- ALTER TABLE - Remover coluna
+
+ALTER TABLE monitoria
+DROP COLUMN NUMERO_DE_MONITORES
+
+-- ALTER TABLE - Remover restrição
+
+ALTER TABLE monitoria DROP CONSTRAINT maior_de_idade;
+
+-- ALTER TABLE - Adicionar um índice à tabela
+
+CREATE UNIQUE INDEX numero_do_monitor ON monitoria (numero_do_monitor);
